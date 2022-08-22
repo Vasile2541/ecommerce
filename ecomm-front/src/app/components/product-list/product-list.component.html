@@ -1,0 +1,72 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container">
+      <div class="row">
+        
+        <div *ngFor="let product of products | paginate: { 
+                                                itemsPerPage: size,
+                                                currentPage: pageNr
+                                              }" 
+                                              class="col-md-3">
+          <div class="product-box">
+            <a routerLink="/products/{{product.id}}">
+              <img src="{{product.imageUrl}}" alt="image" class="img-responsive">
+            </a>
+            <a routerLink="/products/{{product.id}}">
+              <h1>{{product.name}}</h1>
+            </a>
+            <div class="price">{{ product.unitPrice |  currency: 'MDL' }}</div>
+            <button (click) = "addToCart(product)" class="btn btn-primary btn-sm">Adauga in Cos</button>
+          </div>
+
+        </div>
+
+        <!-- if product is empty -->
+        <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12">
+          No products found
+        </div>
+
+      </div>
+      <!-- pagination begin footer -->
+        <div class="footer-pagination">
+          <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div  class="col-md-9" 
+                      style="padding-left: 30%">
+                      <pagination-controls
+                        (pageChange)="pageNr = $event"
+                      ></pagination-controls>
+                </div>
+                <div class="col-md-3 mt-2"  style="text-align: right" >
+
+                  <label for="selectPageSize">Page Size:</label>
+                  <select #myPageSelect name="" id="selectPageSize" 
+                    (change)="updatePageSize($event)">
+                    <!-- myPageSelect.value in loc de event da un string -->
+
+                    <option value="2">2</option>
+                    <option selected="true" value="8">8</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      <!-- pagination end footer -->
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

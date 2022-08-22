@@ -1,0 +1,101 @@
+<div class="main-content">
+  <div class="section-content section-content-30p">
+    <div class="container-fluid">
+
+      <div *ngIf="cartItems.length > 0">
+        <table class="table table-bordered" >
+          <tr>
+            <th width="20%">Produt Image</th>
+            <th width="50%">Produt Detail</th>
+            <th width="30%"></th>
+          </tr>
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <img src="{{item.imageUrl}}" alt="itemImage" class="img-responsive" width="150px">
+            </td>
+            <td>
+              <p>{{item.name}}</p>
+              <p>{{item.unitPrice}}</p>
+            </td>
+            <td>
+              <div style="width: 150px; margin: 40px auto;">
+                <p></p>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+
+                        <input type="text" name="quant[1]" class="form-control input-number" value={{item.quantity}} min="0" max="10">
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                <p></p>
+              </div>
+              <div class="items" style="text-align: center;">
+                <label>Subtotal:</label>{{item.unitPrice * item.quantity| currency: "MDL" }}
+              </div> 
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td style="font-weight: bold;">
+              <p>Total Quantiy:{{totalQuantity}}</p>
+              <p>Shippind Cost: FREE</p>
+              <p>Total Price:{{totalPrice.toFixed(2)| currency: "MDL"}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+        Your Shopping Cart is Emplty: <a routerLink="/products">follow me to check our best selling Products!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="items">
+  <!-- <label>Quantity:</label> -->
+  <!-- <div class="row">
+    <div class="col">
+      <button class="btn btn-primary btn-sm">
+        <div class="p-3 border bg-light">+</div>
+      </button>
+    </div>
+    <div class="col  ml-4 mr-2">
+      {{item.quantity}}
+    </div>
+    <div class="col">
+      <button class="btn btn-primary btn-sm">
+        <div class="p-3 border bg-light">+</div>
+      </button>
+    </div>
+    <div class="col-8"></div>
+  </div>
+</div>
+<div class="items">
+  <label>Subtotal:</label>{{item.unitPrice * item.quantity| currency: "MDL" }} -->
+
+<!-- </div> --> -->
+
+<!-- butto plus minus red green -->
+                  <!-- <p></p>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                      </span>
+                      <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
+                      <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                              <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                      </span>
+                  </div>
+                <p></p> -->
